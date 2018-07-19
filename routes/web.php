@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return redirect('home');
+    return view('welcome');
+    //return redirect('home');
 });
 
 Auth::routes();
@@ -22,19 +22,20 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('countries', 'CountryController');
+
+    Route::resource('countries', 'CountryController');
+
+    Route::resource('cities', 'CityController');
+
+    Route::resource('durations', 'DurationController');
+
+    Route::resource('sites', 'SiteController');
+
+    Route::resource('galleries', 'GalleryController');
+
+    Route::resource('cities', 'CityController');
 });
 
 
-Route::resource('countries', 'CountryController');
-
-Route::resource('countries', 'CountryController');
-
-Route::resource('cities', 'CityController');
-
-Route::resource('durations', 'DurationController');
-
-Route::resource('sites', 'SiteController');
-
-Route::resource('galleries', 'GalleryController');
-
-Route::resource('cities', 'CityController');

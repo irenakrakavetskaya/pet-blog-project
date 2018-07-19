@@ -1,0 +1,81 @@
+
+@font-face {
+    font-family: 'MuseoSans';
+    src: url('../fonts/MuseoSansRegular/MuseoSansRegular.ttf') format("ttf"),
+    url('../fonts/MuseoSansRegular/MuseoSansRegular.woff') format("woff"),
+    url('../fonts/MuseoSansRegular/MuseoSansRegular.eot') format("eot");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'MuseoSans';
+    src: url('../fonts/MuseoSansBold/MuseoSansBold.ttf') format("ttf"),
+    url('../fonts/MuseoSansBold/MuseoSansBold.woff') format("woff"),
+    url('../fonts/MuseoSansBold/MuseoSansBold.eot') format("eot");
+    font-weight: bold;
+}
+body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'MuseoSans',  sans-serif;
+}
+
+.content-header .btn,.pagination>.active>a{
+    background: #f5d447;
+    color: #000;
+    border: 0;
+    box-shadow: none;
+}
+.box.box-primary {
+    border-top-color: #403136;
+}
+.pagination>.active>a:hover,
+.pagination>.active>a:focus,.content-header .btn:hover, .content-header .btn:focus{
+    background: #583F48;
+    border: 0;
+    box-shadow: none;
+    color:#fff;
+}
+.btn.btn-primary:hover,.btn.btn-danger:hover,.btn.btn-primary:focus,.btn.btn-danger:focus{
+    /*background: #583F48;*/
+}
+.skin-blue .main-header .logo:hover{
+    background-color:#222d32;
+}
+.logo-mini img, .logo-lg img{
+    height:31px;
+    /*
+    background: url(/img/Logo-small.svg) no-repeat;
+    width: 31px;
+    height: 33px;
+    text-align: center;
+    vertical-align: middle;
+    */
+}
+.content-header>div, .content-header>form{
+    padding-left: 10px;
+}
+.filter .btn-primary,.toggle-filter, .investment_rates .btn-primary{ /*.deposit .btn-primary,*/
+    background-color: #f5d447;
+    border-color: #f5d447;
+    color: #000;
+
+}
+.toggle-filter{
+    border: 0;
+}
+.filter .btn-primary:hover,.toggle-filter:hover,.filter .btn-primary:focus,.toggle-filter:focus,
+.toggle-filter:active,.toggle-filter:active:focus,.toggle-filter:active:hover,
+.deposit .btn-primary:hover,.deposit .btn-primary:active,.deposit .btn-primary:focus,
+.investment_rates .btn-primary:hover,.investment_rates .btn-primary:active,.investment_rates .btn-primary:focus,
+.changeVisibility.btn-primary{
+    background: #583F48;
+    border: 0;
+    box-shadow: none;
+    color:#fff;
+    outline: none;
+}
+/*.deposit .btn-primary:hover,.deposit .btn-primary:active,.deposit .btn-primary:focus,*/
+.investment_rates .btn-primary:hover,.investment_rates .btn-primary:active,.investment_rates .btn-primary:focus,
+.changeVisibility.btn-primary,.changeVisibility.btn-primary:hover
+{
+    border: 1px solid  #583F48;
+}

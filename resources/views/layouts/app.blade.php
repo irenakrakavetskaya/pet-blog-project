@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>Blog</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Bootstrap 3.3.7 -->
@@ -26,18 +26,27 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    @yield('css')
+    <!--custom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.3/css/fixedHeader.dataTables.min.css">
+    <link rel="stylesheet" href="{{ url('/css/admin_default.css') }}">
+    <link rel="stylesheet" href="{{ url('/css/admin_custom.css') }}">
+
+
+    @yield('css')<!-- for datatables-->
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-green sidebar-mini">
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
-                <b>InfyOm</b>
+            <a href="{{ url("/home") }}" class="logo">
+                <span class="logo-mini"><img src="/img/Logo-small.png"></span>
+                <span class="logo-lg"><img src="/img/Logo-big.png"></span>
+
             </a>
 
             <!-- Header Navbar -->
@@ -46,19 +55,49 @@
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
+                <div class="pull-left header">
+                    <!--<a href="/">
+                        <!--<img src="/image/header-logo.png" class="user-image" ><span class="logo-lg">Finers. Администратор</span>
+                    </a>-->
+                </div>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                    <li class="header">У вас нет оповещений</li>
+                                    <li></li>
+
+                            </ul>
+                        </li>
+
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/>
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{!! Auth::user()->name !!}</span>
+
+                            <!--start of custom-->
+                            <a href="#" class="dropdown-toggle pull-left">
+
+                                <span class="hidden-xs">{!! Auth::user()->email !!} </span>
                             </a>
+
+                            <div class="pull-right">
+                                <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Выйти
+                                </a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                            <!--end of custom-->
+
+
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
@@ -76,7 +115,7 @@
                                     </div>
                                     <div class="pull-right">
                                         <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -84,23 +123,25 @@
                                         </form>
                                     </div>
                                 </li>
+
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </nav>
         </header>
 
         <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
-        <!-- Content Wrapper. Contains page content -->
+    @include('layouts.sidebar')
+    <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('content')
         </div>
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2018 <a href="#">Irena.krakavetskaya</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -149,7 +190,7 @@
             </div>
         </div>
     </div>
-    @endif
+@endif
 
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -161,6 +202,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-    @yield('scripts')
+    <!--custom scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
+    <script  src="https://malsup.github.io/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    <script src="{{url('ckeditor/ckeditor/ckeditor.js')}}"> </script>
+    <!--end of custom scripts-->
+
+    @yield('scripts')<!-- for datatables-->
+
+    <!--custom scripts-->
+    <script src="{{ url('/js/admin_custom.js') }}"></script>
+
+    <!-- fixed header integrated with datatables  -->
+    <!--if((preg_match('/\\d/', URL::current()) < 1) && (strpos(URL::current(),'create') == false) && (strpos(URL::current(),'add') == false))
+        <script src="https://cdn.datatables.net/fixedheader/3.1.3/js/dataTables.fixedHeader.min.js" type="text/javascript"></script>
+    endif-->
+    <!--end of custom scripts-->
 </body>
 </html>
